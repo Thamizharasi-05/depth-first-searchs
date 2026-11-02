@@ -1,6 +1,6 @@
 <h1>ExpNo 2 : Implement Depth First Search Traversal of a Graph</h1> 
-<h3>Name: </h3>
-<h3>Register Number:     </h3>
+<h3>Name: Thamizharasi G</h3>
+<h3>Register Number: 212224100059    </h3>
 <H3>Aim:</H3>
 <p> To Implement Depth First Search Traversal of a Graph using Python 3.</p>
 <h3>Theory:</h3>
@@ -55,6 +55,44 @@ Now, the Stack becomes empty, which means we have visited all the nodes, and our
 </ol></B>
 
 <hr>
+
+<h3>Program:</h3>
+```
+
+    from collections import deque
+    from collections import defaultdict
+    
+    def bfs(graph,start,visited,path):
+        queue = deque()
+        path.append(start)
+        queue.append(start)
+        visited[start] = True
+        while len(queue) != 0:
+            tmpnode = queue.popleft()
+            for neighbour in graph[tmpnode]:
+                if visited[neighbour] == False:
+                    path.append(neighbour)
+                    queue.append(neighbour)
+                    visited[neighbour] = True
+        return path
+    
+    graph = defaultdict(list)
+    v,e = map(int,input().split())
+    for i in range(e):
+        u,v = map(str,input().split())
+        graph[u].append(v)
+        graph[v].append(u)
+    
+    if '0' in graph:
+        start = '0'
+    else:
+        start = 'A'
+    path = []
+    visited = defaultdict(bool)
+    traversedpath = bfs(graph,start,visited,path)
+    print(traversedpath)
+
+
 <h3>Sample Input</h3>
 <hr>
 8 9 <BR>
@@ -89,6 +127,11 @@ F H <BR>
 ['0', '1', '2', '3', '4']
 
 <hr>
+
+<h3> Execution: </h3>
+
+<img width="590" height="465" alt="image" src="https://github.com/user-attachments/assets/7f9f8110-49b1-4ea9-aa37-ad6271af566e" />
+
 <h3>Result:</h3>
 <hr>
 <p>Thus,a Graph was constructed and implementation of Depth First Search for the same graph was done successfully.</p>
